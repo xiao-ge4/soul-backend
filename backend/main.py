@@ -72,7 +72,7 @@ def api_scenario_analyze(req: ScenarioInput):
 	return analyze_scenario(req)
 
 
-# 静态资源（前端）
-app.mount("/", StaticFiles(directory="frontend", html=True), name="static")
+# 静态资源（前端）- 前端独立部署，不需要挂载
+# app.mount("/", StaticFiles(directory="frontend", html=True), name="static")
 
 
