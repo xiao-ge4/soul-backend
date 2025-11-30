@@ -72,6 +72,7 @@ def generate_peer_reply(req: PeerReplyRequest) -> PeerReplyResponse:
 				last_user_msg = turn.get('text', '')
 				break
 	
+	json_format = '[{"id":"pos","text":"...","tone":"positive"},{"id":"neut","text":"...","tone":"neutral"},{"id":"neg","text":"...","tone":"negative"}]'
 	usr = (
 		f"请扮演与我聊天的对象，风格：{style}（{style_desc}）。{persona_hint}\n"
 		f"{role_hint}\n\n"
@@ -88,7 +89,7 @@ def generate_peer_reply(req: PeerReplyRequest) -> PeerReplyResponse:
 		f"4. 理解你的身份定位：作为{role_title}，应结合场景和对话历史决定合适的主动或被动程度\n"
 		f"5. 场景逻辑：作为{role_title}，不要说不符合身份的话（如学弟不会说'我们社团'，应该说'你们社团'）\n\n"
 		"请以 JSON 数组返回 3 条不同态度的回复（积极/中立/委婉拒绝）。\n"
-		"格式：[{\"id\":\"pos\",\"text\":\"...\",\"tone\":\"positive\"},{\"id\":\"neut\",\"text\":\"...\",\"tone\":\"neutral\"},{\"id\":\"neg\",\"text\":\"...\",\"tone\":\"negative\"}]\n"
+		f"格式：{json_format}\n"
 		"只输出 JSON 数组，不要任何解释文字。"
 	)
 
