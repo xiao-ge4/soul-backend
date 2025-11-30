@@ -73,14 +73,17 @@ def generate_peer_reply(req: PeerReplyRequest) -> PeerReplyResponse:
 				break
 	
 	json_format = '[{"id":"pos","text":"...","tone":"positive"},{"id":"neut","text":"...","tone":"neutral"},{"id":"neg","text":"...","tone":"negative"}]'
+	scenario_line = f"场景设定：{scn_desc}\n" if scn_desc else ""
+	last_msg = last_user_msg if last_user_msg else "（无）"
+
 	usr = (
 		f"请扮演与我聊天的对象，风格：{style}（{style_desc}）。{persona_hint}\n"
 		f"{role_hint}\n\n"
-		f"{('场景设定：' + scn_desc + '\n') if scn_desc else ''}"
+		f"{scenario_line}"
 		"\n【对话历史】\n"
 		f"{conv_str}\n\n"
 		"【回复要求】\n"
-		f"对方（用户）最后一句话是：{last_user_msg if last_user_msg else '（无）'}\n"
+		f"对方（用户）最后一句话是：{last_msg}\n"
 		"你必须针对这句话给出直接、相关的回复。\n\n"
 		"重要规则：\n"
 		"1. 中文输出，每条不超过2句\n"
