@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: soul-talkbuddy-backend
+    env: python
+    region: singapore
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: MODELSCOPE_TOKEN
+        sync: false
+      - key: MODEL_BASE_URL
+        value: https://api-inference.modelscope.cn/v1
+      - key: QWEN_MODEL_NAME
+        value: Qwen/Qwen3-8B
